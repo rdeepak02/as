@@ -1,0 +1,82 @@
+xml code :
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center">
+
+    <Button
+        android:id="@+id/play"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="PLAY" />
+
+    <Button
+        android:id="@+id/pause"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="PAUSE" />
+
+    <Button
+        android:id="@+id/stop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="STOP" />
+
+</LinearLayout>                                                                                             
+
+
+java code :
+import android.app.*;
+import android.os.*;
+import android.media.*;
+import android.view.*;
+import android.widget.*;
+
+public class MainActivity extends Activity {
+    MediaPlayer mp;
+
+    public void onCreate(Bundle b) {
+        super.onCreate(b);
+
+        LinearLayout l = new LinearLayout(this);
+        l.setOrientation(1);
+        l.setGravity(17);
+
+        Button p = new Button(this);
+        Button q = new Button(this);
+        Button s = new Button(this);
+
+        p.setText("PLAY");
+        q.setText("PAUSE");
+        s.setText("STOP");
+
+        l.addView(p);
+        l.addView(q);
+        l.addView(s);
+        setContentView(l);
+
+        mp = MediaPlayer.create(this, R.raw.song);
+
+        p.setOnClickListener(v -> {
+            if (mp != null && !mp.isPlaying()) mp.start();
+        });
+
+        q.setOnClickListener(v -> {
+            if (mp != null && mp.isPlaying()) mp.pause();
+        });
+
+        s.setOnClickListener(v -> {
+            if (mp != null) {
+                mp.release();
+                mp = MediaPlayer.create(this, R.raw.song);
+            }
+        });
+    }
+
+    protected void onDestroy() {
+        if (mp != null) mp.release();
+        super.onDestroy();
+    }
+}
