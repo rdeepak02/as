@@ -1,0 +1,112 @@
+xml code:
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+android:layout_width="match_parent" 
+android:layout_height="match_parent" 
+android:orientation="vertical" 
+android:padding="16dp" 
+android:background="#F5F5F5">
+<!--  Header Section using RelativeLayout  -->
+<RelativeLayout 
+android:layout_width="match_parent" 
+android:layout_height="wrap_content" 
+android:background="#FFFFFF" 
+android:padding="16dp"
+android:elevation="4dp"
+android:layout_marginBottom="16dp">
+<ImageView 
+android:id="@+id/profile_image" 
+android:layout_width="80dp" 
+android:layout_height="80dp" 
+android:src="@mipmap/ic_launcher_round" 
+android:layout_alignParentStart="true"/>
+<TextView android:id="@+id/txt_name" 
+android:layout_width="wrap_content" 
+android:layout_height="wrap_content" 
+android:text="John Doe" 
+android:textSize="22sp" 
+android:textStyle="bold" 
+android:layout_toEndOf="@id/profile_image" 
+android:layout_marginStart="16dp"/>
+<TextView 
+android:layout_width="wrap_content" 
+android:layout_height="wrap_content" 
+android:text="Software Developer" 
+android:textColor="#757575" a
+ndroid:layout_below="@id/txt_name" 
+android:layout_toEndOf="@id/profile_image" 
+android:layout_marginStart="16dp"
+android:layout_marginTop="4dp"/>
+</RelativeLayout>
+<!--  Details Section using Nested Layouts  -->
+<LinearLayout 
+android:layout_width="match_parent" 
+android:layout_height="wrap_content" 
+android:orientation="vertical" 
+android:background="#FFFFFF" 
+android:padding="16dp" 
+android:elevation="2dp">
+<!--  Row 1: Email  -->
+<LinearLayout 
+android:layout_width="match_parent" 
+android:layout_height="wrap_content" 
+android:orientation="horizontal" 
+android:paddingTop="8dp" 
+android:paddingBottom="8dp">
+<TextView a
+ndroid:layout_width="100dp" 
+android:layout_height="wrap_content" 
+android:text="Email:" 
+android:textStyle="bold"/>
+<TextView android:layout_width="wrap_content" 
+android:layout_height="wrap_content" 
+android:text="johndoe@email.com"/>
+</LinearLayout>
+<!--  Row 2: Phone  -->
+<LinearLayout 
+android:layout_width="match_parent" 
+android:layout_height="wrap_content" 
+android:orientation="horizontal" 
+android:paddingTop="8dp" 
+android:paddingBottom="8dp">
+<TextView 
+android:layout_width="100dp" 
+android:layout_height="wrap_content" 
+android:text="Phone:" 
+android:textStyle="bold"/>
+<TextView 
+android:layout_width="wrap_content" 
+android:layout_height="wrap_content" 
+android:text="+1 234 567 890"/>
+</LinearLayout>
+<!--  Row 3: Skills  -->
+<LinearLayout 
+android:layout_width="match_parent" 
+android:layout_height="wrap_content" 
+android:orientation="horizontal" 
+android:paddingTop="8dp" 
+android:paddingBottom="8dp">
+<TextView 
+android:layout_width="100dp" 
+android:layout_height="wrap_content" 
+android:text="Skills:"
+android:textStyle="bold"/>
+<TextView 
+android:layout_width="wrap_content" 
+android:layout_height="wrap_content" 
+android:text="Android, Java, Kotlin, SQL"/>
+</LinearLayout>
+</LinearLayout>
+</LinearLayout>
+
+
+java code:
+package com.example.mobile;
+import android.os.Bundle;
+import androidx.appcompat.app.AppCompatActivity;
+public class MainActivity extends AppCompatActivity {
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+    }
+}
