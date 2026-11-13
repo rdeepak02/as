@@ -1,0 +1,72 @@
+xml code:
+<?xml version="1.0" encoding="utf-8"?><LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:orientation="vertical">
+
+<TextView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="Fragments-Tablet Programming"
+    android:textSize="22sp"
+    android:gravity="center" />
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <Button
+        android:id="@+id/b1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="Fragment 1" />
+
+    <Button
+        android:id="@+id/b2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="Fragment 2" />
+
+</LinearLayout>
+
+<TextView
+    android:id="@+id/f"
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:layout_weight="1"
+    android:textSize="20sp"
+    android:gravity="center" />
+
+</LinearLayout>
+
+
+java code:
+
+package com.example.fragments;
+
+import android.os.Bundle;
+import android.widget.*;
+import androidx.appcompat.app.AppCompatActivity;
+
+public class MainActivity extends AppCompatActivity {
+
+    public void onCreate(Bundle b) {
+        super.onCreate(b);
+        setContentView(R.layout.activity_main);
+
+        TextView t = findViewById(R.id.f);
+
+        t.setText("Fragment 1\n\nStudent Name: Rahul\nRoll No: 101\nDepartment: CSE");
+
+        findViewById(R.id.b1).setOnClickListener(v -> {
+            t.setText("Fragment 1\n\nStudent Name: Rahul\nRoll No: 101\nDepartment: CSE");
+        });
+
+        findViewById(R.id.b2).setOnClickListener(v -> {
+            t.setText("Fragment 2\n\nCourse: Android\n\nSemester: VI\n\nCollege: ABC College");
+        });
+    }
+}
