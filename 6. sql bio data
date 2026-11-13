@@ -1,0 +1,170 @@
+Xml Code: 
+<?xml version="1.0" encoding="utf-8"?> 
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android" 
+    android:layout_width="match_parent" 
+    android:layout_height="match_parent"> 
+ 
+    <LinearLayout 
+        android:layout_width="match_parent" 
+        android:layout_height="wrap_content" 
+        android:orientation="vertical" 
+        android:padding="16dp"> 
+ 
+        <EditText android:id="@+id/edtName" 
+            android:layout_width="match_parent" 
+            android:layout_height="wrap_content" 
+            android:hint="Name"/> 
+ 
+        <EditText android:id="@+id/edtRollNo" 
+            android:layout_width="match_parent" 
+            android:layout_height="wrap_content" 
+            android:hint="Roll Number"/> 
+ 
+        <EditText android:id="@+id/edtDob" 
+            android:layout_width="match_parent" 
+            android:layout_height="wrap_content" 
+            android:hint="Date of Birth"/> 
+ 
+        <EditText android:id="@+id/edtGender" 
+            android:layout_width="match_parent" 
+            android:layout_height="wrap_content" 
+            android:hint="Gender"/> 
+ 
+        <EditText android:id="@+id/edtPhone" 
+            android:layout_width="match_parent" 
+            android:layout_height="wrap_content" 
+            android:hint="Phone"/> 
+ 
+        <EditText android:id="@+id/edtEmail" 
+            android:layout_width="match_parent" 
+            android:layout_height="wrap_content" 
+            android:hint="Email"/> 
+ 
+        <EditText android:id="@+id/edtAddress" 
+            android:layout_width="match_parent" 
+            android:layout_height="wrap_content" 
+            android:hint="Address"/> 
+ 
+        <Button android:id="@+id/btnSave" 
+            android:layout_width="match_parent" 
+            android:layout_height="wrap_content" 
+            android:text="SAVE"/> 
+ 
+        <Button android:id="@+id/btnView" 
+            android:layout_width="match_parent" 
+            android:layout_height="wrap_content" 
+            android:text="VIEW DATA"/> 
+ 
+        <Button android:id="@+id/btnDelete" 
+            android:layout_width="match_parent" 
+            android:layout_height="wrap_content" 
+            android:text="DELETE ALL"/> 
+ 
+        <TextView android:id="@+id/txtResult" 
+            android:layout_width="match_parent" 
+            android:layout_height="wrap_content" 
+            android:textSize="16sp"/> 
+ 
+    </LinearLayout> 
+</ScrollView> 
+ 
+MainActivity.java: 
+ 
+package com.example.studentbio_data; 
+ 
+import android.os.Bundle; 
+import android.widget.*; 
+import androidx.appcompat.app.AppCompatActivity; 
+ 
+public class MainActivity extends AppCompatActivity { 
+    EditText[] e = new EditText[7]; 
+    TextView out; 
+    DatabaseHelper db; 
+ 
+    @Override 
+    protected void onCreate(Bundle b) { 
+        super.onCreate(b); 
+        setContentView(R.layout.activity_main); 
+        db = new DatabaseHelper(this); 
+ 
+        int[] ids = {R.id.edtName, R.id.edtRollNo, R.id.edtDob, 
+                R.id.edtGender, R.id.edtPhone, R.id.edtEmail, 
+                R.id.edtAddress}; 
+ 
+        for (int i = 0; i < 7; i++) 
+            e[i] = findViewById(ids[i]); 
+ 
+        out = findViewById(R.id.txtResult); 
+ 
+        findViewById(R.id.btnSave).setOnClickListener(v -> { 
+            String[] s = new String[7]; 
+            for (int i = 0; i < 7; i++) 
+                s[i] = e[i].getText().toString().trim(); 
+ 
+            if (s[0].isEmpty() || s[1].isEmpty()) { 
+                Toast.makeText(this, "Enter Name and Roll No", 
+                        Toast.LENGTH_SHORT).show(); 
+                return; 
+            } 
+ 
+            boolean ok = db.insertStudent(s); 
+            Toast.makeText(this, ok ? "Saved" : "Failed", 
+                    Toast.LENGTH_SHORT).show(); 
+ 
+            if (ok) for (EditText x : e) x.setText(""); 
+        }); 
+ 
+        findViewById(R.id.btnView).setOnClickListener(v -> 
+                out.setText(db.getAllStudents())); 
+ 
+        findViewById(R.id.btnDelete).setOnClickListener(v -> { 
+            out.setText(db.deleteAllStudents() 
+                    ? "All data deleted" : "No data found"); 
+        }); 
+    } 
+} 
+ 
+Database helper package: 
+ 
+package com.example.studentbio_data; 
+import android.content.*; 
+import android.database.Cursor; 
+import android.database.sqlite.*; 
+public class DatabaseHelper extends SQLiteOpenHelper { 
+    public DatabaseHelper(Context c) { 
+        super(c, "StudentDB", null, 1); 
+    } 
+    @Override 
+    public void onCreate(SQLiteDatabase db) { 
+        db.execSQL("CREATE TABLE students(id INTEGER PRIMARY KEY 
+AUTOINCREMENT," 
+                + "name TEXT,roll TEXT,dob TEXT,gender TEXT,phone TEXT," 
+                + "email TEXT,address TEXT)"); 
+    } 
+    @Override 
+    public void onUpgrade(SQLiteDatabase db, int o, int n) {} 
+    public boolean insertStudent(String[] s) { 
+        ContentValues v = new ContentValues(); 
+        String[] cols = {"name","roll","dob","gender","phone","email","address"}; 
+        for (int i = 0; i < 7; i++) v.put(cols[i], s[i]); 
+        return getWritableDatabase().insert("students", null, v) != -1; 
+    } 
+    public String getAllStudents() { 
+        Cursor c = getReadableDatabase().rawQuery( 
+                "SELECT * FROM students", null); 
+        StringBuilder s = new StringBuilder(); 
+        while (c.moveToNext()) 
+            s.append("Name: ").append(c.getString(1)) 
+             .append("\nRoll: ").append(c.getString(2)) 
+             .append("\nDOB: ").append(c.getString(3)) 
+             .append("\nGender: ").append(c.getString(4)) 
+             .append("\nPhone: ").append(c.getString(5)) 
+             .append("\nEmail: ").append(c.getString(6)) 
+             .append("\nAddress: ").append(c.getString(7)) 
+             .append("\n----------\n"); 
+        c.close(); 
+        return s.length() == 0 ? "No data found" : s.toString(); 
+    } 
+    public boolean deleteAllStudents() { 
+        return getWritableDatabase().delete("students", null, null) > 0; 
+    }}
