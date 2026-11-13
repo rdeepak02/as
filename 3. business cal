@@ -1,0 +1,455 @@
+xml code:
+
+
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#121212"
+    android:padding="8dp">
+
+    <!-- Calculator Display -->
+    <TextView
+        android:id="@+id/tv_display"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="bottom|end"
+        android:text="0"
+        android:textColor="#FFFFFF"
+        android:textSize="48sp"
+        android:padding="16dp"
+        android:maxLines="1"
+        android:ellipsize="start"/>
+
+    <!-- First Row: C, Backspace, %, / -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn_clear"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="C"
+            android:textSize="20sp"
+            android:textColor="#FF9800"/>
+
+        <Button
+            android:id="@+id/btn_back"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="⌫"
+            android:textSize="20sp"
+            android:textColor="#FF9800"/>
+
+        <Button
+            android:id="@+id/btn_percent"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="%"
+            android:textSize="20sp"
+            android:textColor="#FF9800"/>
+
+        <Button
+            android:id="@+id/btn_div"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="/"
+            android:textSize="22sp"
+            android:textColor="#FF9800"/>
+
+    </LinearLayout>
+
+    <!-- Second Row: 7, 8, 9, × -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn_7"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="7"
+            android:textSize="22sp"/>
+
+        <Button
+            android:id="@+id/btn_8"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="8"
+            android:textSize="22sp"/>
+
+        <Button
+            android:id="@+id/btn_9"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="9"
+            android:textSize="22sp"/>
+
+        <Button
+            android:id="@+id/btn_mul"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="×"
+            android:textSize="22sp"
+            android:textColor="#FF9800"/>
+
+    </LinearLayout>
+
+    <!-- Third Row: 4, 5, 6, - -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn_4"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="4"
+            android:textSize="22sp"/>
+
+        <Button
+            android:id="@+id/btn_5"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="5"
+            android:textSize="22sp"/>
+
+        <Button
+            android:id="@+id/btn_6"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="6"
+            android:textSize="22sp"/>
+
+        <Button
+            android:id="@+id/btn_sub"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="-"
+            android:textSize="22sp"
+            android:textColor="#FF9800"/>
+
+    </LinearLayout>
+
+    <!-- Fourth Row: 1, 2, 3, + -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn_1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="1"
+            android:textSize="22sp"/>
+
+        <Button
+            android:id="@+id/btn_2"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="2"
+            android:textSize="22sp"/>
+
+        <Button
+            android:id="@+id/btn_3"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="3"
+            android:textSize="22sp"/>
+
+        <Button
+            android:id="@+id/btn_add"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="+"
+            android:textSize="22sp"
+            android:textColor="#FF9800"/>
+
+    </LinearLayout>
+
+    <!-- Fifth Row: 0, ., = -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn_0"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="0"
+            android:textSize="22sp"/>
+
+        <Button
+            android:id="@+id/btn_dot"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="."
+            android:textSize="22sp"/>
+
+        <Button
+            android:id="@+id/btn_equal"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="="
+            android:textSize="22sp"
+            android:backgroundTint="#FF9800"
+            android:textColor="#FFFFFF"/>
+
+    </LinearLayout>
+
+</LinearLayout>
+
+
+
+java code:
+
+package com.example.calculator;
+
+import android.os.Bundle;
+import android.widget.Button;
+import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+public class MainActivity extends AppCompatActivity {
+
+    private TextView tvDisplay;
+
+    private double firstNumber = 0;
+    private String operator = "";
+    private boolean newNumber = true;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        setContentView(R.layout.activity_main);
+
+        tvDisplay = findViewById(R.id.tv_display);
+
+        setupNumbers();
+        setupOperators();
+        setupExtraButtons();
+    }
+
+    private void setupNumbers() {
+
+        int[] numberButtons = {
+                R.id.btn_0,
+                R.id.btn_1,
+                R.id.btn_2,
+                R.id.btn_3,
+                R.id.btn_4,
+                R.id.btn_5,
+                R.id.btn_6,
+                R.id.btn_7,
+                R.id.btn_8,
+                R.id.btn_9
+        };
+
+        for (int id : numberButtons) {
+
+            Button button = findViewById(id);
+
+            button.setOnClickListener(v -> {
+
+                String number = button.getText().toString();
+
+                if (newNumber || tvDisplay.getText().toString().equals("0")) {
+                    tvDisplay.setText(number);
+                    newNumber = false;
+                } else {
+                    tvDisplay.append(number);
+                }
+            });
+        }
+    }
+
+    private void setupOperators() {
+
+        findViewById(R.id.btn_add).setOnClickListener(v -> {
+            setOperator("+");
+        });
+
+        findViewById(R.id.btn_sub).setOnClickListener(v -> {
+            setOperator("-");
+        });
+
+        findViewById(R.id.btn_mul).setOnClickListener(v -> {
+            setOperator("*");
+        });
+
+        findViewById(R.id.btn_div).setOnClickListener(v -> {
+            setOperator("/");
+        });
+    }
+
+    private void setupExtraButtons() {
+
+        // Decimal
+        findViewById(R.id.btn_dot).setOnClickListener(v -> {
+
+            String current = tvDisplay.getText().toString();
+
+            if (newNumber) {
+                tvDisplay.setText("0.");
+                newNumber = false;
+            } else if (!current.contains(".")) {
+                tvDisplay.append(".");
+            }
+        });
+
+        // Clear
+        findViewById(R.id.btn_clear).setOnClickListener(v -> {
+            clearCalculator();
+        });
+
+        // Backspace
+        findViewById(R.id.btn_back).setOnClickListener(v -> {
+
+            String current = tvDisplay.getText().toString();
+
+            if (current.equals("Error")) {
+                clearCalculator();
+                return;
+            }
+
+            if (current.length() > 1) {
+                tvDisplay.setText(
+                        current.substring(0, current.length() - 1)
+                );
+            } else {
+                tvDisplay.setText("0");
+                newNumber = true;
+            }
+        });
+
+        // Percentage
+        findViewById(R.id.btn_percent).setOnClickListener(v -> {
+
+            String current = tvDisplay.getText().toString();
+
+            if (!current.equals("Error")) {
+
+                double value = Double.parseDouble(current);
+                value = value / 100;
+
+                showResult(value);
+            }
+        });
+
+        // Equal
+        findViewById(R.id.btn_equal).setOnClickListener(v -> {
+            calculate();
+        });
+    }
+
+    private void setOperator(String op) {
+
+        String display = tvDisplay.getText().toString();
+
+        if (display.equals("Error")) {
+            clearCalculator();
+            return;
+        }
+
+        firstNumber = Double.parseDouble(display);
+        operator = op;
+        newNumber = true;
+    }
+
+    private void calculate() {
+
+        if (operator.isEmpty()) {
+            return;
+        }
+
+        String display = tvDisplay.getText().toString();
+
+        if (display.equals("Error")) {
+            return;
+        }
+
+        double secondNumber = Double.parseDouble(display);
+        double result = 0;
+
+        switch (operator) {
+
+            case "+":
+                result = firstNumber + secondNumber;
+                break;
+
+            case "-":
+                result = firstNumber - secondNumber;
+                break;
+
+            case "*":
+                result = firstNumber * secondNumber;
+                break;
+
+            case "/":
+
+                if (secondNumber == 0) {
+                    tvDisplay.setText("Error");
+                    operator = "";
+                    newNumber = true;
+                    return;
+                }
+
+                result = firstNumber / secondNumber;
+                break;
+        }
+
+        showResult(result);
+
+        firstNumber = result;
+        operator = "";
+        newNumber = true;
+    }
+
+    private void showResult(double result) {
+
+        if (result == (long) result) {
+            tvDisplay.setText(String.valueOf((long) result));
+        } else {
+            tvDisplay.setText(String.valueOf(result));
+        }
+    }
+
+    private void clearCalculator() {
+
+        firstNumber = 0;
+        operator = "";
+        newNumber = true;
+
+        tvDisplay.setText("0");
+    }
+}
